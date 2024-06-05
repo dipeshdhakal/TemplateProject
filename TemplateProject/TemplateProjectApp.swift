@@ -10,23 +10,24 @@ import SwiftData
 
 @main
 struct TemplateProjectApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    
+    @ObservedObject var appSettings = AppSettings.shared
+    @StateObject var appCoordinator: AppCoordinator = AppCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRootView()
+            .preferredColorScheme(appSettings.currentTheme.colorScheme)
+            .environmentObject(appCoordinator)
+            .environmentObject(appSettings)
+            .onOpenURL { url in
+                appCoordinator.checkDeepLink(url: url)
+            }
+            .onContinueUserActivity(NSUserActivityTypeBrowsingWeb, perform: launchUrl(userActivity:))
         }
-        .modelContainer(sharedModelContainer)
     }
+    
+    func launchUrl(userActivity: NSUserActivity) {
+      print("launchUrl continue user activity: \(userActivity.activityType)")
+    }    
 }
