@@ -17,10 +17,15 @@ platform :ios do
     )
   end
 
+  desc("Runs Unit Tests")
   lane :unit_test_app do
-  run_tests(workspace: "TemplateProject.xcworkspace",
-            devices: ["iPhone 15"],
-            scheme: "TemplateProjectTests")
+    # The Scanfile contains the tests config
+    scan(
+      devices: ["iPhone 15"],
+      project: "TemplateProject.xcodeproj",
+      disable_concurrent_testing: true,
+      number_of_retries: 2
+    )
   end
 
 #################### SET VERSION #####################
