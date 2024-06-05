@@ -1,0 +1,86 @@
+name: build-and-release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      patch_number:
+        description: 'Adjust the patch number for manual patch submissions'
+        default: 1
+        required: true
+        type: number
+
+env:
+  ImageOS: macos1240
+  XCODE_CI_VERSION: 15.0.1
+  DEFAULT_DEVICE_TYPE: iPhone-15
+  DEFAULT_DEVICE_NAME: iPhone 15
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GH_TOKEN: ${{ github.token }}
+  GITHUB_BUILD_NUMBER: ${{ github.run_id }}
+  PATCH_NUMBER: ${{ github.event.inputs.patch_number || 1 }}
+
+jobs:
+  test-github-release:
+    runs-on: macos-latest
+    timeout-minutes: 120
+
+    steps:
+    - name: Checkout Repository from Github
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Set up environment
+      uses: ./.github/actions/setup
+
+    - name: Build App
+      run: |
+        bash ./.github/scripts/bundle.sh "exec" "fastlane" "build_app_custom"
+    
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: artifacts/*
+
+    - name: Set App Version and Build Number
+      run:  |
+        bash ./.github/scripts/bundle.sh "exec" "fastlane" "ios" "setversion"
+
+    - name: Check for Tag
+      run: |
+        if [ $(git tag -l "${{ env.APP_VERSION }}") ]; then
+          echo "Release ${{ env.APP_VERSION }} already exists"
+          gh release delete "${{ env.APP_VERSION }}" --cleanup-tag --yes
+        else
+          echo "Release ${{ env.APP_VERSION }} does not exist"
+        fi
+    
+    - name: Create Change Log
+      id: create-changelog
+      run: |
+        bash ./.github/scripts/create-changelog.sh
+
+    - name: Create Release in Github
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        tag_name: ${{ format('{0}', env.APP_VERSION) }}
+        release_name: ${{ env.APP_VERSION }}
+        body: |
+          Changes:
+          ${{ needs.production-submission.outputs.changelog }}
+        draft: false
+        prerelease: false 
+
+    - name: Clean Resources
+      if: ${{ always() }}
+      uses: ./.github/actions/cleanup
+      continue-on-error: true
+
+    outputs:
+      changelog: ${{ steps.create-changelog.outputs.content }}

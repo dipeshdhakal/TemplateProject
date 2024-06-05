@@ -1,0 +1,48 @@
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :build_app_custom do
+    scan
+    gym(
+      scheme: "TemplateProject",
+      skip_archive: true,
+      skip_package_ipa: true,
+      skip_codesigning: true,
+      configuration: "Debug",
+    )
+  end
+
+#################### SET VERSION #####################
+
+  desc "Set version number"
+  lane :setversion do
+    d = DateTime.now
+    year_number = d.strftime("%Y").to_i      # 2023
+    week_number = d.strftime("%-U").to_i     # 9
+    patch_number = ENV["PATCH_NUMBER"].to_i  # 0
+    
+    new_version = "#{year_number}.#{week_number}.#{patch_number}"
+    
+    sh("echo APP_VERSION=#{new_version} >> $GITHUB_ENV")
+
+    increment_version_number(
+      version_number: new_version # Set a specific version number
+    )
+
+    build_number = ENV["GITHUB_BUILD_NUMBER"]
+
+    increment_build_number(
+      build_number: build_number
+    )
+    
+    sh("echo BUILD_NUMBER=#{build_number}")
+    sh("echo BUILD_NUMBER=#{build_number} >> $GITHUB_ENV")
+    
+  end
+  
+end
