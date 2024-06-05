@@ -17,6 +17,17 @@ platform :ios do
     )
   end
 
+  desc("Runs Unit Tests")
+  lane :unit_test_app do
+    # The Scanfile contains the tests config
+    scan(
+      devices: ["iPhone 15"],
+      project: "TemplateProject.xcodeproj",
+      disable_concurrent_testing: true,
+      number_of_retries: 2
+    )
+  end
+
 #################### SET VERSION #####################
 
   desc "Set version number"

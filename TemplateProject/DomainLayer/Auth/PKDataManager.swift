@@ -24,7 +24,7 @@ class PKDataManager {
     
     // Fake server
     func getChallenge() {
-        var buffer = [UInt8](repeating: 0, count: 32)
+        let buffer = [UInt8](repeating: 0, count: 32)
         challenge = Data(buffer)
         userId = "44"
         userIdData = userId?.data(using: .utf8)

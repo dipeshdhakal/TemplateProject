@@ -13,7 +13,7 @@ final class SomeViewModelTest: XCTestCase {
     var viewModel: ItemsViewModel!
 
     override func setUp() {
-        viewModel = ItemsViewModel(apiClient: MockApiClient())
+        viewModel = ItemsViewModel()
     }
 
     func testGetEvents() async throws {

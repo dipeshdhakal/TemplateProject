@@ -1,0 +1,36 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  ImageOS: macos1240
+  XCODE_CI_VERSION: 15.0.1
+  DEFAULT_DEVICE_TYPE: iPhone-15
+  DEFAULT_DEVICE_NAME: iPhone 15
+
+jobs:
+  unit-tests:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    
+    steps:
+    - name: Checkout Repository from Github
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Set up environment
+      uses: ./.github/actions/setup
+
+    - name: Unit Test App
+      run: |
+        bash ./.github/scripts/bundle.sh "exec" "fastlane" "unit_test_app"
+
+    - name: Clean Resources
+      if: ${{ always() }}
+      uses: ./.github/actions/cleanup
+      continue-on-error: true
