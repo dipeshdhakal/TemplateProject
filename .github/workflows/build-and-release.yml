@@ -7,7 +7,7 @@ on:
     inputs:
       patch_number:
         description: 'Adjust the patch number for manual patch submissions'
-        default: 1
+        default: 0
         required: true
         type: number
 
@@ -19,7 +19,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
   GH_TOKEN: ${{ github.token }}
   GITHUB_BUILD_NUMBER: ${{ github.run_id }}
-  PATCH_NUMBER: ${{ github.event.inputs.patch_number || 1 }}
+  PATCH_NUMBER: ${{ github.event.inputs.patch_number || 0 }}
 
 jobs:
   test-github-release:
