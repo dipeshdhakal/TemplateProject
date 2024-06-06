@@ -22,7 +22,7 @@ env:
   PATCH_NUMBER: ${{ github.event.inputs.patch_number || 0 }}
 
 jobs:
-  test-github-release:
+  github-release:
     runs-on: macos-latest
     timeout-minutes: 30
 
@@ -73,7 +73,7 @@ jobs:
         release_name: ${{ env.APP_VERSION }}
         body: |
           Changes:
-          ${{ needs.production-submission.outputs.changelog }}
+          ${{ steps.create-changelog.outputs.content }}
         draft: false
         prerelease: false 
 
@@ -81,6 +81,3 @@ jobs:
       if: ${{ always() }}
       uses: ./.github/actions/cleanup
       continue-on-error: true
-
-    outputs:
-      changelog: ${{ steps.create-changelog.outputs.content }}
