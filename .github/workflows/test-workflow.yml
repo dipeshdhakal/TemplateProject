@@ -1,9 +1,7 @@
 name: Test workflow
 
 on:
-  workflow_run:
-    workflows: ['Pull Request']
-    types: [completed]
+  workflow_call:
 
 env:
   ImageOS: macos1240

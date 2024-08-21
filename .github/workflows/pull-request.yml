@@ -34,3 +34,8 @@ jobs:
       if: ${{ always() }}
       uses: ./.github/actions/cleanup
       continue-on-error: true
+
+  call-workflow2:
+    # This must be specified at the job level, not the step level
+    uses: ./.github/workflows/test-workflow.yml
+    secrets: inherit
