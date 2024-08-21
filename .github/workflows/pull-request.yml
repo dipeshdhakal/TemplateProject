@@ -23,10 +23,6 @@ jobs:
         fetch-depth: 0
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Lets see
-        run: |
-          echo 'Lets seee'
-
     # - name: Unit Test App
     #   run: |
     #     bash ./.github/scripts/bundle.sh "exec" "fastlane" "unit_test_app"
