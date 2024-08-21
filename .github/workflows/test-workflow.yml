@@ -1,0 +1,28 @@
+name: Pull Request
+
+on:
+    workflow_run:
+        workflows: ['Pull Request']
+        types: [completed]
+
+env:
+  ImageOS: macos1240
+  XCODE_CI_VERSION: 15.0.1
+  DEFAULT_DEVICE_TYPE: iPhone-15
+  DEFAULT_DEVICE_NAME: iPhone 15
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
+  unit-tests:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    
+    steps:
+    - name: Checkout Repository from Github
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
