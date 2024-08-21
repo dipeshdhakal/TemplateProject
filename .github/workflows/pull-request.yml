@@ -24,7 +24,8 @@ jobs:
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Lets see
-        run: echo 'Lets seee'
+        run: |
+          echo 'Lets seee'
 
     # - name: Unit Test App
     #   run: |
