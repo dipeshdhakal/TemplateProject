@@ -15,8 +15,10 @@ jobs:
   on-success:
     runs-on: macos-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo 'The triggering workflow passed'
 
-  unit-tests:
+  test-job:
     runs-on: macos-latest
     timeout-minutes: 30
     
