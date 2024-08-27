@@ -2,6 +2,10 @@ name: Test workflow
 
 on:
   workflow_call:
+  workflow_run:
+    workflows: [Pull Request]
+    types:
+      - completed
 
 env:
   ImageOS: macos1240
@@ -12,5 +16,6 @@ env:
 jobs:
   do-more:
     runs-on: macos-latest
+    if:  ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: echo 'The triggering workflow passed'
