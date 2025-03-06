@@ -11,6 +11,7 @@ struct SettingsView: View {
     
     @StateObject var viewModel: SettingsViewModel
     @EnvironmentObject var appSettings : AppSettings
+    @EnvironmentObject var appCoordinator : AppCoordinator
 
     var body: some View {
         NavigationView {
@@ -30,7 +31,7 @@ struct SettingsView: View {
                                 .foregroundColor(Color.foregroundColorLight)
                             Spacer()
                             Button(action: {
-                                print("Edit Profile tapped")
+                                appCoordinator.changeAppViewState(path: .webView("https://dipeshdhakal.site/"))
                             }) {
                                 Text("Edit Profile")
                                     .frame(minWidth: 0, maxWidth: .infinity)

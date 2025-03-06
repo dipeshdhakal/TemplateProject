@@ -17,6 +17,7 @@ enum DataFetchError: Error {
 /// A concrete implementation of data layer; Responsible for doing data operations; In this case is SwiftData
 actor DataProvider: DataProvidable {
     // shared context for database operations
+    
     static let modelContext: ModelContext? = {
         do {
             let config = ModelConfiguration(isStoredInMemoryOnly: isUITest) // store in-memory if running from UI test

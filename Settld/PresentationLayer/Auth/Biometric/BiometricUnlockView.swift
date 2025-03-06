@@ -11,6 +11,7 @@ struct BiometricUnlockView: View {
     
     @ObservedObject var viewModel = BiometricUnlockViewModel()
     @EnvironmentObject var appSettings: AppSettings
+    @State var firstLoad = true
     
     var body: some View {
         VStack {
@@ -19,8 +20,7 @@ struct BiometricUnlockView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 100, height: 100)
                 .padding()
-            
-            Text("Unlock using biometric")
+            Text("Biometric.Failed.Title", tableName: "Shared")
                   .frame(minWidth: 0, maxWidth: .infinity)
                   .foregroundColor(Color.white)
             .padding()
@@ -28,7 +28,11 @@ struct BiometricUnlockView: View {
         .onAppear {
             Task {
                 let success = await viewModel.attemptBiometricAuthentication()
-                appSettings.appUnlocked = success
+                await MainActor.run {
+                    if success {
+                        appSettings.appUnlocked = true
+                    }
+                }
             }
         }
         .showAlert(isShowing: $viewModel.isShowingAlert, details: viewModel.alertDetails)

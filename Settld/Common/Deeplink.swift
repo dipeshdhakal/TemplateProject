@@ -11,17 +11,17 @@ enum Deeplink {
     
     init?(rawValue: String) {
         switch rawValue {
-            case "items": self = .items
+            case "cards": self = .cards
             case "dashboard": self = .dashboard
             case "settings": self = .settings
             case "passcode": self = .passcode
-            default: self = .item(rawValue)
+            default: self = .card(rawValue)
         }
     }
         
     case dashboard
-    case items
-    case item(String)
+    case cards
+    case card(String)
     case settings
     case passcode
     
@@ -29,8 +29,8 @@ enum Deeplink {
         switch self {
         case .dashboard:
             return .dashboard
-        case .items:
-            return .items
+        case .cards:
+            return .cards
         case .settings:
             return .settings
         default:

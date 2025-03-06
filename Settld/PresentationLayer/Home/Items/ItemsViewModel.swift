@@ -45,10 +45,10 @@ class ItemsViewModel: ObservableObject {
     }
     
     private func observeStream() async {
-        for await items in itemsManager.itemsStream {
-            await MainActor.run {
-                self.userItems = items
-            }
-        }
+//        for await items in itemsManager.stream {
+//            await MainActor.run {
+//                self.userItems = items
+//            }
+//        }
     }
 }

@@ -13,9 +13,11 @@ struct AppRootView: View {
     @EnvironmentObject var appCoordinator : AppCoordinator
     @EnvironmentObject var appSettings : AppSettings
     
+    @StateObject var viewModel = AppRootViewModel()
+    
     var body: some View {
         NavigationStack(path: $appCoordinator.appLaunchPath, root: {
-            Text("App launching...")
+            ProgressView()
                 .navigationDestination(for: AppLaunchNavigation.self, destination: { item in
                     switch item {
                     case .home:
@@ -24,16 +26,31 @@ struct AppRootView: View {
                     case .biometric:
                         BiometricUnlockView()
                             .navigationBarBackButtonHidden(true)
-                    case .auth:
-                        Color.clear
+                    case .login:
+                        LoginView()
+                            .navigationBarBackButtonHidden(true)
+                    case .onboarding:
+                        OnboardingRootView()
                             .navigationBarBackButtonHidden(true)
                     case .privacyScreen:
                         VStack {
                             EmptyView()
                         }
                         .navigationBarBackButtonHidden(true)
+                    case .startup:
+                        ProgressView()
+                            .navigationBarBackButtonHidden(true)
+                    case .webView(let urlString):
+                        WebView(url: URL(string: urlString)!)
+                            .navigationBarTitleDisplayMode(.inline)
                     }
                 })
+        })
+        .transition(.identity)
+        .onChange(of: viewModel.startupCompleted, { oldValue, newValue in
+            if newValue {
+                appCoordinator.determineNextPath()
+            }
         })
         .onChange(of: scenePhase, { oldValue , newValue in
             guard oldValue != newValue else { return }
@@ -45,7 +62,13 @@ struct AppRootView: View {
                 if !appSettings.appUnlocked && UserDefaults.biometricEnabled {
                     appCoordinator.changeAppViewState(path: .biometric)
                 } else {
-                    appCoordinator.changeAppViewState(path: .home)
+                    if oldValue == .inactive && !viewModel.startupCompleted {
+                        // First launch
+                        appCoordinator.changeAppViewState(path: .startup)
+                    } else {
+                        // From background
+                        appCoordinator.determineNextPath()
+                    }
                 }
                 
             }

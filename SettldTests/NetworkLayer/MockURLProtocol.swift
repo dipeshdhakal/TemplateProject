@@ -8,7 +8,7 @@
 import Foundation
 @testable import Settld
 
-struct MockEndpoint: EndpointProvider {
+struct MockEndpoint: EndpointProvider, @unchecked Sendable {
     var scheme: String = "https"
     var baseURL: String = "example.com"
     var path: String = "/test"
@@ -20,7 +20,7 @@ struct MockEndpoint: EndpointProvider {
 
 class MockURLProtocol: URLProtocol {
     
-    static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
+    nonisolated(unsafe) static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
     
     override class func canInit(with request: URLRequest) -> Bool {
         return true

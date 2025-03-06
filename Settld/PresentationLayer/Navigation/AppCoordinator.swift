@@ -24,7 +24,7 @@ class AppCoordinator: ObservableObject {
                 if url.pathComponents.count > 2 {
                     secondComponent = url.pathComponents[2]
                     switch currentTab {
-                    case .items:
+                    case .cards:
                         currentItemID = secondComponent
                     default:
                         break
@@ -34,27 +34,50 @@ class AppCoordinator: ObservableObject {
         }
     }
     
+    func appendOnTopOfRootView(path: AppLaunchNavigation) {
+        appLaunchPath.removeAll(where: { $0 != .startup })
+        appLaunchPath.append(path)
+    }
+    
+    func determineNextPath() {
+        if UserDefaults.userOnboarded {
+            if UserDefaults.userLoggedIn {
+                appendOnTopOfRootView(path: .home)
+            } else {
+                appendOnTopOfRootView(path: .login)
+            }
+        } else {
+            appendOnTopOfRootView(path: .onboarding)
+        }
+    }
+    
     func changeAppViewState(path: AppLaunchNavigation) {
         switch path {
-        case .home:
-            appLaunchPath = [path]
+        case .home, .login, .onboarding:
+            appendOnTopOfRootView(path: path)
         case .biometric:
+            // When faceID is shown, scenePhase goes to background triggering infinite loop. So, we need to check if biometric is already in the path
+            if appLaunchPath.last != .biometric {
+                appLaunchPath.append(path)
+            }
+        case .privacyScreen, .webView:
             appLaunchPath.append(path)
-        case .auth:
-            appLaunchPath.append(path)
-        case .privacyScreen:
-            appLaunchPath.append(path)
+        case .startup:
+            appLaunchPath = [path]
         }
     }
 }
 
 enum Tab: String {
-    case dashboard, items, settings
+    case dashboard, cards, settings
 }
 
-enum AppLaunchNavigation: Hashable {
+enum AppLaunchNavigation: Hashable, Equatable {
+    case login
+    case onboarding
     case home
     case biometric
-    case auth
     case privacyScreen
+    case startup
+    case webView(String)
 }

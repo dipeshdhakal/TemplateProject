@@ -8,9 +8,9 @@
 import LocalAuthentication
 import UIKit
 
-actor BiometricAuthManager {
+class BiometricAuthManager {
     
-    static let shared = BiometricAuthManager()
+    nonisolated(unsafe) static let shared = BiometricAuthManager()
     
     private init() {}
     
@@ -26,11 +26,12 @@ actor BiometricAuthManager {
     }
     
     func authenticateWithBiometrics() async -> (Bool, Error?) {
-        await withCheckedContinuation { continuation in
-            let context = LAContext()
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Authenticate using Face ID or Touch ID") { success, error in
-                continuation.resume(returning: (success, error))
-            }
+        let context = LAContext()
+        do {
+            try await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: String(localized: "Biometric.Auth.Message", table: "Shared"))
+            return (true, nil)
+        } catch {
+            return (false, error)
         }
     }
 }

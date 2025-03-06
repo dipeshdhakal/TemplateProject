@@ -8,12 +8,13 @@
 import XCTest
 @testable import Settld
 
+@MainActor
 final class SomeViewModelTest: XCTestCase {
 
-    var viewModel: ItemsViewModel!
+    var viewModel = ItemsViewModel()
 
     override func setUp() {
-        viewModel = ItemsViewModel()
+        
     }
 
     func testGetEvents() async throws {

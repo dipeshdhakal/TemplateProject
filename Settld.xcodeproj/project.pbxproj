@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C135D79B2D7974EA003547F3 /* UITests+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C135D79A2D7974E9003547F3 /* UITests+Utils.swift */; };
+		C135D79D2D79756C003547F3 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C135D79C2D79756C003547F3 /* AppCoordinatorTests.swift */; };
 		C13950F92C0F1DD6003BA389 /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13950F82C0F1DD6003BA389 /* Deeplink.swift */; };
 		C13950FC2C0F2108003BA389 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13950FB2C0F2108003BA389 /* AppCoordinator.swift */; };
 		C13950FE2C0F2F84003BA389 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13950FD2C0F2F84003BA389 /* AppRootView.swift */; };
 		C13F4BC82D79182D004D34C4 /* UserDetaults+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BC72D791823004D34C4 /* UserDetaults+Convenience.swift */; };
 		C13F4BCA2D792330004D34C4 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BC92D79232D004D34C4 /* ErrorAlert.swift */; };
 		C13F4BCC2D7927C1004D34C4 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BCB2D7927BD004D34C4 /* CustomAlert.swift */; };
+		C13F4BCF2D794DDF004D34C4 /* Shared.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C13F4BCE2D794DDF004D34C4 /* Shared.xcstrings */; };
+		C13F4BD32D794FAF004D34C4 /* AppRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BD22D794FAB004D34C4 /* AppRootViewModel.swift */; };
+		C13F4BD52D795EFA004D34C4 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BD42D795EF8004D34C4 /* WebView.swift */; };
+		C13F4BD92D79695E004D34C4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BD82D79695B004D34C4 /* LoginView.swift */; };
+		C13F4BDB2D79698B004D34C4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BDA2D796987004D34C4 /* LoginViewModel.swift */; };
+		C13F4BDE2D7970C3004D34C4 /* OnboardingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BDD2D7970BC004D34C4 /* OnboardingRootView.swift */; };
+		C13F4BE02D79712F004D34C4 /* OnboardingRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BDF2D797126004D34C4 /* OnboardingRootViewModel.swift */; };
 		C15A1FD72C8823DE00DB5F1D /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A1FD62C8823DE00DB5F1D /* NotificationPreferencesView.swift */; };
 		C17608AF2C0192AD001AC924 /* SettldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17608AE2C0192AD001AC924 /* SettldApp.swift */; };
 		C17608B52C0192B2001AC924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17608B42C0192B2001AC924 /* Assets.xcassets */; };
@@ -94,12 +103,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C135D79A2D7974E9003547F3 /* UITests+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITests+Utils.swift"; sourceTree = "<group>"; };
+		C135D79C2D79756C003547F3 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		C13950F82C0F1DD6003BA389 /* Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
 		C13950FB2C0F2108003BA389 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C13950FD2C0F2F84003BA389 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		C13F4BC72D791823004D34C4 /* UserDetaults+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetaults+Convenience.swift"; sourceTree = "<group>"; };
 		C13F4BC92D79232D004D34C4 /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 		C13F4BCB2D7927BD004D34C4 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		C13F4BCE2D794DDF004D34C4 /* Shared.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Shared.xcstrings; sourceTree = "<group>"; };
+		C13F4BD22D794FAB004D34C4 /* AppRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewModel.swift; sourceTree = "<group>"; };
+		C13F4BD42D795EF8004D34C4 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C13F4BD82D79695B004D34C4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C13F4BDA2D796987004D34C4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C13F4BDD2D7970BC004D34C4 /* OnboardingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootView.swift; sourceTree = "<group>"; };
+		C13F4BDF2D797126004D34C4 /* OnboardingRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootViewModel.swift; sourceTree = "<group>"; };
 		C15A1FD62C8823DE00DB5F1D /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
 		C17608AB2C0192AD001AC924 /* Settld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Settld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17608AE2C0192AD001AC924 /* SettldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettldApp.swift; sourceTree = "<group>"; };
@@ -173,17 +191,53 @@
 		C13950FA2C0F20F5003BA389 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C13F4BD22D794FAB004D34C4 /* AppRootViewModel.swift */,
 				C13950FB2C0F2108003BA389 /* AppCoordinator.swift */,
 				C13950FD2C0F2F84003BA389 /* AppRootView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		C13F4BCD2D794DA0004D34C4 /* Localisation */ = {
+			isa = PBXGroup;
+			children = (
+				C13F4BCE2D794DDF004D34C4 /* Shared.xcstrings */,
+			);
+			path = Localisation;
+			sourceTree = "<group>";
+		};
+		C13F4BD62D796755004D34C4 /* Biometric */ = {
+			isa = PBXGroup;
+			children = (
+				C17609432C05A538001AC924 /* BiometricUnlockViewModel.swift */,
+				C17609452C05A5DC001AC924 /* BiometricUnlockView.swift */,
+			);
+			path = Biometric;
+			sourceTree = "<group>";
+		};
+		C13F4BD72D796767004D34C4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C13F4BDA2D796987004D34C4 /* LoginViewModel.swift */,
+				C13F4BD82D79695B004D34C4 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C13F4BDC2D7970AF004D34C4 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C13F4BDF2D797126004D34C4 /* OnboardingRootViewModel.swift */,
+				C13F4BDD2D7970BC004D34C4 /* OnboardingRootView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		C17608A22C0192AD001AC924 = {
 			isa = PBXGroup;
 			children = (
 				C17608AD2C0192AD001AC924 /* Settld */,
-				C17608C22C0192B2001AC924 /* TemplateProjectTests */,
+				C17608C22C0192B2001AC924 /* SettldTests */,
 				C17608CC2C0192B2001AC924 /* SettldUITests */,
 				C17608AC2C0192AD001AC924 /* Products */,
 			);
@@ -224,21 +278,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		C17608C22C0192B2001AC924 /* TemplateProjectTests */ = {
+		C17608C22C0192B2001AC924 /* SettldTests */ = {
 			isa = PBXGroup;
 			children = (
 				C17609082C01A188001AC924 /* PresentationLayer */,
 				C17608FF2C01A039001AC924 /* NetworkLayer */,
 				C17608C32C0192B2001AC924 /* SettldTests.swift */,
 			);
-			path = TemplateProjectTests;
+			path = SettldTests;
 			sourceTree = "<group>";
 		};
 		C17608CC2C0192B2001AC924 /* SettldUITests */ = {
 			isa = PBXGroup;
 			children = (
+				C135D79A2D7974E9003547F3 /* UITests+Utils.swift */,
 				C17608CD2C0192B2001AC924 /* SettldUITests.swift */,
 				C17608CF2C0192B2001AC924 /* SettldUITestsLaunchTests.swift */,
+				C135D79C2D79756C003547F3 /* AppCoordinatorTests.swift */,
 			);
 			path = SettldUITests;
 			sourceTree = "<group>";
@@ -267,6 +323,8 @@
 		C17608DE2C0192E6001AC924 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C13F4BDC2D7970AF004D34C4 /* Onboarding */,
+				C13F4BCD2D794DA0004D34C4 /* Localisation */,
 				C13950FA2C0F20F5003BA389 /* Navigation */,
 				C17609472C05A71E001AC924 /* CommonViews */,
 				C176093F2C059E77001AC924 /* Auth */,
@@ -393,8 +451,8 @@
 		C176093F2C059E77001AC924 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				C17609432C05A538001AC924 /* BiometricUnlockViewModel.swift */,
-				C17609452C05A5DC001AC924 /* BiometricUnlockView.swift */,
+				C13F4BD72D796767004D34C4 /* Login */,
+				C13F4BD62D796755004D34C4 /* Biometric */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -410,6 +468,7 @@
 		C17609472C05A71E001AC924 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				C13F4BD42D795EF8004D34C4 /* WebView.swift */,
 				C13F4BCB2D7927BD004D34C4 /* CustomAlert.swift */,
 				C13F4BC92D79232D004D34C4 /* ErrorAlert.swift */,
 				C17609482C05A788001AC924 /* CustomButtonStyle.swift */,
@@ -525,6 +584,7 @@
 			files = (
 				C17608B82C0192B2001AC924 /* Preview Assets.xcassets in Resources */,
 				C17608B52C0192B2001AC924 /* Assets.xcassets in Resources */,
+				C13F4BCF2D794DDF004D34C4 /* Shared.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,8 +620,10 @@
 				C17608F82C019A4B001AC924 /* ApiProtocol.swift in Sources */,
 				C17608E52C019514001AC924 /* DataProvidable.swift in Sources */,
 				C17608FB2C019BAE001AC924 /* ItemsViewModel.swift in Sources */,
+				C13F4BE02D79712F004D34C4 /* OnboardingRootViewModel.swift in Sources */,
 				C17608E62C019514001AC924 /* DataProvider.swift in Sources */,
 				C15A1FD72C8823DE00DB5F1D /* NotificationPreferencesView.swift in Sources */,
+				C13F4BD92D79695E004D34C4 /* LoginView.swift in Sources */,
 				C17609152C01A574001AC924 /* SettingsView.swift in Sources */,
 				C17609172C01A583001AC924 /* DashboardView.swift in Sources */,
 				C176091D2C045B1E001AC924 /* ItemDetailsViewModel.swift in Sources */,
@@ -577,11 +639,15 @@
 				C17608F42C01991B001AC924 /* ApiError.swift in Sources */,
 				C13950FE2C0F2F84003BA389 /* AppRootView.swift in Sources */,
 				C17608EF2C019572001AC924 /* Date+Formatted.swift in Sources */,
+				C13F4BDE2D7970C3004D34C4 /* OnboardingRootView.swift in Sources */,
 				C17609252C0492A8001AC924 /* AppSettings.swift in Sources */,
 				C17609422C05A3C3001AC924 /* BiometricAuthManager.swift in Sources */,
 				C17608F22C0198E6001AC924 /* APIRequest.swift in Sources */,
 				C17608AF2C0192AD001AC924 /* SettldApp.swift in Sources */,
+				C13F4BD32D794FAF004D34C4 /* AppRootViewModel.swift in Sources */,
+				C13F4BD52D795EFA004D34C4 /* WebView.swift in Sources */,
 				C17609492C05A788001AC924 /* CustomButtonStyle.swift in Sources */,
+				C13F4BDB2D79698B004D34C4 /* LoginViewModel.swift in Sources */,
 				C17609232C0467DD001AC924 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,8 +669,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C135D79D2D79756C003547F3 /* AppCoordinatorTests.swift in Sources */,
 				C17608D02C0192B2001AC924 /* SettldUITestsLaunchTests.swift in Sources */,
 				C17608CE2C0192B2001AC924 /* SettldUITests.swift in Sources */,
+				C135D79B2D7974EA003547F3 /* UITests+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +752,7 @@
 				PRODUCT_NAME = Settld;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -741,6 +810,7 @@
 				PRODUCT_NAME = Settld;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -816,14 +886,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2X8Z2D5EWJ;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.geekalaya.TemplateProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -836,14 +907,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2X8Z2D5EWJ;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.geekalaya.TemplateProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -855,16 +927,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.geekalaya.TemplateProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TemplateProject;
+				TEST_TARGET_NAME = Settld;
 			};
 			name = Debug;
 		};
@@ -872,16 +946,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.geekalaya.TemplateProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TemplateProject;
+				TEST_TARGET_NAME = Settld;
 			};
 			name = Release;
 		};

@@ -34,7 +34,7 @@ extension Mockable {
     }
 }
 
-class MockApiClient: Mockable, ApiProtocol {
+class MockApiClient: Mockable, ApiProtocol, @unchecked Sendable {
 
     var sendError: Bool
     var mockFile: String?

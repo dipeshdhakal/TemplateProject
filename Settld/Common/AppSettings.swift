@@ -10,10 +10,6 @@ import SwiftUI
 class AppSettings: ObservableObject {
     
     @Published var appUnlocked: Bool = false
-    
-    func updateAppUnlock(value: Bool) {
-        appUnlocked = value
-    }
 
 }
 

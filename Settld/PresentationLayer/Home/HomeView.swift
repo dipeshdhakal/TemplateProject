@@ -23,7 +23,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Items", systemImage: "flag")
                 }
-                .tag(Tab.items)
+                .tag(Tab.cards)
             
             SettingsView(viewModel: SettingsViewModel())
                 .tabItem {
