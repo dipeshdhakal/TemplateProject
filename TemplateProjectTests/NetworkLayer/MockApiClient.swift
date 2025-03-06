@@ -1,12 +1,12 @@
 //
 //  MockApiClient.swift
-//  TemplateProjectTests
+//  SettldTests
 //
 //  Created by Dipesh Dhakal on 25/5/2024.
 //
 
 import XCTest
-@testable import TemplateProject
+@testable import Settld
 
 protocol Mockable: AnyObject {
     var bundle: Bundle { get }

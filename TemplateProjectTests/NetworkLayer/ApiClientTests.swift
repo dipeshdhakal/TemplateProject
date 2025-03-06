@@ -1,12 +1,12 @@
 //
 //  ApiClientTests.swift
-//  TemplateProjectTests
+//  SettldTests
 //
 //  Created by Dipesh Dhakal on 25/5/2024.
 //
 
 import XCTest
-@testable import TemplateProject
+@testable import Settld
 
 final class ApiClientTests: XCTestCase {
 

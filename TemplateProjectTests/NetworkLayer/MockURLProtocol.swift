@@ -1,12 +1,12 @@
 //
 //  MockURLProtocol.swift
-//  TemplateProjectTests
+//  SettldTests
 //
 //  Created by Dipesh Dhakal on 25/5/2024.
 //
 
 import Foundation
-@testable import TemplateProject
+@testable import Settld
 
 struct MockEndpoint: EndpointProvider {
     var scheme: String = "https"
