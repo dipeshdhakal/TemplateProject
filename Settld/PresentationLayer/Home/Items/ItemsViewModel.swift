@@ -17,10 +17,6 @@ class ItemsViewModel: ObservableObject {
     init(itemsManager: ItemManagable = ItemsManager(), preview: Bool = false) {
         self.itemsManager = itemsManager
         self.preview = preview
-        
-        Task {
-            await getAsyncEvents()
-        }
     }
     
     @Published var userItems: [Item] = []
@@ -41,14 +37,16 @@ class ItemsViewModel: ObservableObject {
                 eventError = error
             }
         }
+        
         await observeStream()
     }
     
     private func observeStream() async {
-//        for await items in itemsManager.stream {
-//            await MainActor.run {
-//                self.userItems = items
-//            }
-//        }
+        
+        for await items in itemsManager.items {
+            await MainActor.run {
+                self.userItems = items
+            }
+        }
     }
 }

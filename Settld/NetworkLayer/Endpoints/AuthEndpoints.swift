@@ -11,7 +11,7 @@ enum AuthEndpoints: EndpointProvider {
 
     case login(userName: String, password: String)
     case register(id: String)
-    case refreshToken
+    case refreshToken(refreshToken: String)
 
     var path: String {
         switch self {

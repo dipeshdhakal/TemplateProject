@@ -18,7 +18,7 @@ final class DefaultURLSessionProvider: URLSessionProvider {
         configuration.waitsForConnectivity = true
         configuration.timeoutIntervalForRequest = 60
         configuration.timeoutIntervalForResource = 300
-        return URLSession(configuration: configuration)
+        return URLSession(configuration: configuration, delegate: SSLPinningDelegate(), delegateQueue: nil)
     }
 }
 
@@ -41,7 +41,7 @@ final actor ApiClient: ApiProtocol {
         var tokenString: String?
         
         if endpoint.isAuthRequest {
-            let token = try await authManager.fetchValidAuthToken()
+            let token = try await authManager.getToken()
             tokenString = token.accessToken
         }
         
@@ -88,7 +88,7 @@ final actor ApiClient: ApiProtocol {
                     NotificationCenter.default.post(name: .userSessionExpired, object: self)
                 } else if response.statusCode == 401 {
                     if endpoint.isAuthRequest {
-                        _ = try await authManager.fetchValidAuthToken()
+                        _ = try await authManager.refreshTokens()
                         return try await asyncRequest(endpoint: endpoint, responseModel: T.self)
                     }
                 }

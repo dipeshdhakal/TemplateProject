@@ -8,6 +8,7 @@
 import XCTest
 
 final class AppCoordinatorTests: BaseTestCase {
+    
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -23,42 +24,60 @@ final class AppCoordinatorTests: BaseTestCase {
     }
 
     @MainActor func testOnboarding() throws {
-        UserDefaults.standard.set(true, forKey: "UserOnboarded")
         let app = XCUIApplication()
         app.launchArguments = launchArguments
         app.launch()
-        
+        let viewExists = app.otherElements["OnboardingRootView"].waitForExistence(timeout: 5)
+        XCTAssertTrue(viewExists)
     }
     
     @MainActor func testLogin() throws {
-        UserDefaults.standard.set(true, forKey: "UserOnboarded")
-        UserDefaults.standard.set(false, forKey: "UserLoggedIn")
         let app = XCUIApplication()
         app.launchArguments = launchArguments
+        app.setOnboardingCompleted()
         app.launch()
+        let viewExists = app.otherElements["LoginView"].waitForExistence(timeout: 5)
+        XCTAssertTrue(viewExists)
 
     }
     
     @MainActor func testDashboard() throws {
-        UserDefaults.standard.set(true, forKey: "UserOnboarded")
-        UserDefaults.standard.set(true, forKey: "UserLoggedIn")
         let app = XCUIApplication()
         app.launchArguments = launchArguments
+        app.setOnboardingCompleted()
+        app.setLoginCompleted()
         app.launch()
+        let viewExists = app.otherElements["HomeView"].waitForExistence(timeout: 5)
+        XCTAssertTrue(viewExists)
 
     }
     
+    // This does not test shit
     @MainActor func testPrivacyScreenOnBackground() throws {
         let app = XCUIApplication()
         app.launchArguments = launchArguments
         app.launch()
-
+        XCUIDevice.shared.press(.home)
+        let background = app.wait(for: .runningBackground, timeout: 5)
+        XCTAssertTrue(background)
+        app.activate()
+        let foreground = app.wait(for: .runningForeground, timeout: 5)
+        XCTAssertTrue(foreground)
     }
     
     @MainActor func testBiometricScreenIfEnabled() throws {
         let app = XCUIApplication()
         app.launchArguments = launchArguments
+        app.setOnboardingCompleted()
+        app.setLoginCompleted()
+        app.setBiometricEnabled()
+        
         app.launch()
+        
+        let faceID = app.images.element(matching: .image, identifier: "faceid")
+        let faceIDExists = faceID.waitForExistence(timeout: 5)
+        
+        XCTAssertTrue(faceIDExists)
 
     }
 

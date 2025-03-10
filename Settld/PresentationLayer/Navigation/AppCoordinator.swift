@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class AppCoordinator: ObservableObject {
     
@@ -14,6 +15,21 @@ class AppCoordinator: ObservableObject {
     @Published var deeplink: Deeplink?
     @Published var currentItemID: String?
     @Published var appLaunchPath : [AppLaunchNavigation] = []
+    var cancellables = Set<AnyCancellable>()
+    
+    var sessionExpiryNotification = NotificationCenter.default.publisher(for: .userSessionExpired)
+    
+    init() {
+        sessionExpiryNotification
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+            self?.changeAppViewState(path: .login)
+        }.store(in: &cancellables)
+    }
+    
+    deinit {
+        cancellables.forEach { $0.cancel() }
+    }
 
     func checkDeepLink(url: URL) {
         if url.pathComponents.count > 1 {

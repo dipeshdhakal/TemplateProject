@@ -28,6 +28,11 @@ struct ItemsView: View {
                 }
             }
         }
+        .onAppear {
+            Task {
+                await viewModel.getAsyncEvents()
+            }
+        }
         .navigationTitle("Items")
     }
 }

@@ -23,6 +23,7 @@ struct OnboardingRootView: View {
             .padding()
             .buttonStyle(.bordered)
         }
+        .accessibilityIdentifier("OnboardingRootView")
         .onChange(of: onboardingRootViewModel.onboardingSuccess) { oldValue, newValue in
             if newValue {
                 appCoordinator.changeAppViewState(path: .home)

@@ -40,3 +40,19 @@ final class SettldUITests: XCTestCase {
 //        }
 //    }
 }
+
+extension XCUIApplication {
+    
+    func setOnboardingCompleted(_ onboardingCompleted: Bool = true) {
+        launchArguments += ["-UserOnboarded", onboardingCompleted ? "true" : "false"]
+    }
+    
+    func setLoginCompleted(_ loginCompleted: Bool = true) {
+        launchArguments += ["-UserLoggedIn", loginCompleted ? "true" : "false"]
+    }
+    
+    func setBiometricEnabled(_ biometricEnabled: Bool = true) {
+        launchArguments += ["-BiometricEnabled", biometricEnabled ? "true" : "false"]
+    }
+}
+

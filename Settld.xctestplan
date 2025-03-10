@@ -25,7 +25,6 @@
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Settld.xcodeproj",
         "identifier" : "C17608C82C0192B2001AC924",

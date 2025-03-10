@@ -24,6 +24,8 @@ extension XCUIElement {
         self.typeText(deleteString)
         self.typeText(text)
     }
+    
+    
 }
 
 extension XCUIElement {

@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum AuthError: Error {
+    case invalidAccessToken
+    case noAuthToken
+    case noRefreshToken
+    case refreshTokenFailed
+}
+
 struct Token: Decodable {
     let accessToken: String?
     let refreshToken: String?
@@ -15,11 +22,12 @@ struct Token: Decodable {
 
 protocol AuthManagable: Sendable {
     func getToken() async throws -> Token
-    func fetchValidAuthToken() async throws -> Token
+    func refreshTokens() async throws -> Token
 }
 
 protocol TokenDataProvidable: Sendable {
     var tokenString: String? { get }
+    var refreshTokenString: String? { get }
     var tokenExpiryDate: String? { get }
     func setToken(token: Token) async
 }
@@ -73,10 +81,14 @@ actor AuthManager: AuthManagable {
             return token
         }
         
-        return try await fetchValidAuthToken()
+        return try await refreshTokens()
     }
 
-    func fetchValidAuthToken() async throws -> Token {
+    func refreshTokens() async throws -> Token {
+        
+        guard let refreshToken = tokenDataProvider.refreshTokenString, !refreshToken.isEmpty else {
+            throw AuthError.noRefreshToken
+        }
         
         if isRefreshing {
             return try await withCheckedThrowingContinuation { continuation in
@@ -85,10 +97,10 @@ actor AuthManager: AuthManagable {
                 }
             }
         }
-                
+        
         isRefreshing = true
         
-        let endpoint = AuthEndpoints.refreshToken
+        let endpoint = AuthEndpoints.refreshToken(refreshToken: refreshToken)
         do {
             let (data, _) = try await urlSession.data(for: endpoint.asURLRequest())
             let token = try JSONDecoder().decode(Token.self, from: data)
@@ -98,29 +110,22 @@ actor AuthManager: AuthManagable {
                 waitingTasks.removeAll()
                 return token
             } else {
-                let error = ApiError(
-                    errorCode: "ERROR-2",
-                    message: "Invalid token"
-                )
-                thoseWhoAreWaiting(error: error)
-                throw error
+                handleError(error: AuthError.invalidAccessToken)
+                throw AuthError.invalidAccessToken
             }
         } catch let error as ApiError {
-            thoseWhoAreWaiting(error: error)
+            handleError(error: error)
             throw error
         } catch {
-            let error = ApiError(
-                errorCode: "ERROR-1",
-                message: "Unknown API error \(error.localizedDescription)"
-            )
-            thoseWhoAreWaiting(error: error)
-            throw error
+            handleError(error: AuthError.refreshTokenFailed)
+            throw AuthError.refreshTokenFailed
         }
     }
     
-    func thoseWhoAreWaiting(error: Error) {
+    private func handleError(error: Error) {
         isRefreshing = false
         waitingTasks.forEach { $0(.failure(error)) }
         waitingTasks.removeAll()
+        NotificationCenter.default.post(name: .userSessionExpired, object: self)
     }
 }

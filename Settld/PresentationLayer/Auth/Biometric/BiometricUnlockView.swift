@@ -26,6 +26,7 @@ struct BiometricUnlockView: View {
                   .foregroundColor(Color.white)
             .padding()
         }
+        .accessibilityIdentifier("BiometricUnlockView")
         .onAppear {
             Task {
                 let success = await viewModel.attemptBiometricAuthentication()

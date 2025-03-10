@@ -31,6 +31,7 @@ struct HomeView: View {
                 }
                 .tag(Tab.settings)
         }
+        .accessibilityIdentifier("HomeView")
     }
 }
 

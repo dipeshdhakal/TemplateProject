@@ -31,6 +31,7 @@
 		C13F4BDB2D79698B004D34C4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BDA2D796987004D34C4 /* LoginViewModel.swift */; };
 		C13F4BDE2D7970C3004D34C4 /* OnboardingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BDD2D7970BC004D34C4 /* OnboardingRootView.swift */; };
 		C13F4BE02D79712F004D34C4 /* OnboardingRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F4BDF2D797126004D34C4 /* OnboardingRootViewModel.swift */; };
+		C15564642D7E8E0F00E01923 /* PinnedCertificatesEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15564632D7E8E0C00E01923 /* PinnedCertificatesEvaluator.swift */; };
 		C15A1FD72C8823DE00DB5F1D /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A1FD62C8823DE00DB5F1D /* NotificationPreferencesView.swift */; };
 		C17608AF2C0192AD001AC924 /* SettldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17608AE2C0192AD001AC924 /* SettldApp.swift */; };
 		C17608B52C0192B2001AC924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17608B42C0192B2001AC924 /* Assets.xcassets */; };
@@ -136,6 +137,7 @@
 		C13F4BDA2D796987004D34C4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C13F4BDD2D7970BC004D34C4 /* OnboardingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootView.swift; sourceTree = "<group>"; };
 		C13F4BDF2D797126004D34C4 /* OnboardingRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootViewModel.swift; sourceTree = "<group>"; };
+		C15564632D7E8E0C00E01923 /* PinnedCertificatesEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedCertificatesEvaluator.swift; sourceTree = "<group>"; };
 		C15A1FD62C8823DE00DB5F1D /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
 		C17608AB2C0192AD001AC924 /* Settld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Settld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17608AE2C0192AD001AC924 /* SettldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettldApp.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		C17608DD2C0192DC001AC924 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C15564632D7E8E0C00E01923 /* PinnedCertificatesEvaluator.swift */,
 				C105F4402D7E4B8D00A5D01D /* Endpoints */,
 				C10116302D7A7F9A007F4F75 /* AuthManager.swift */,
 				C17608F12C0198E6001AC924 /* APIRequest.swift */,
@@ -592,7 +595,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					C17608AA2C0192AD001AC924 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -603,6 +606,7 @@
 					};
 					C17608C82C0192B2001AC924 = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1610;
 						TestTargetID = C17608AA2C0192AD001AC924;
 					};
 				};
@@ -700,6 +704,7 @@
 				C17608AF2C0192AD001AC924 /* SettldApp.swift in Sources */,
 				C13F4BD32D794FAF004D34C4 /* AppRootViewModel.swift in Sources */,
 				C13F4BD52D795EFA004D34C4 /* WebView.swift in Sources */,
+				C15564642D7E8E0F00E01923 /* PinnedCertificatesEvaluator.swift in Sources */,
 				C17609492C05A788001AC924 /* CustomButtonStyle.swift in Sources */,
 				C13F4BDB2D79698B004D34C4 /* LoginViewModel.swift in Sources */,
 				C17609232C0467DD001AC924 /* SettingsViewModel.swift in Sources */,
@@ -876,7 +881,6 @@
 		C17608D42C0192B2001AC924 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Settld/Settld.entitlements;
@@ -909,7 +913,6 @@
 		C17608D52C0192B2001AC924 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Settld/Settld.entitlements;
@@ -942,7 +945,6 @@
 		C17608D72C0192B2001AC924 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -963,7 +965,6 @@
 		C17608D82C0192B2001AC924 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -984,7 +985,7 @@
 		C17608DA2C0192B2001AC924 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -994,6 +995,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Settld;
@@ -1003,7 +1005,7 @@
 		C17608DB2C0192B2001AC924 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";

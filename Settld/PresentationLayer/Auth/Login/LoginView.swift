@@ -29,6 +29,7 @@ struct LoginView: View {
             .padding()
             .buttonStyle(.bordered)
         }
+        .accessibilityIdentifier("LoginView")
         .onChange(of: loginViewModel.loginSuccess) { oldValue, newValue in
             if newValue {
                 appCoordinator.changeAppViewState(path: .home)

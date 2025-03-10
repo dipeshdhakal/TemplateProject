@@ -37,6 +37,7 @@ struct AppRootView: View {
                         VStack {
                             EmptyView()
                         }
+                        .accessibilityIdentifier("PrivacyView")
                         .navigationBarBackButtonHidden(true)
                     case .startup:
                         ProgressView()
