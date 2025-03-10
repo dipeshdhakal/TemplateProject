@@ -17,7 +17,7 @@ struct ItemsView: View {
             Text("Items View")
             List {
                 ForEach(viewModel.userItems) { item in
-                    NavigationLink(tag: item.itemID, selection: $appcoordinator.currentItemID) {
+                    NavigationLink {
                         ItemDetailsView(itemDetailsViewModel: ItemDetailsViewModel(id: item.itemID))
                     } label: {
                         VStack {

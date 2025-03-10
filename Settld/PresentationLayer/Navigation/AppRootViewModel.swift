@@ -12,6 +12,7 @@ import Combine
 class AppRootViewModel: ObservableObject {
     
     @Published var startupCompleted = false
+    @Published var shouldForceUpgrade = false
     
     init() {
         Task { @MainActor in
@@ -29,6 +30,10 @@ class AppRootViewModel: ObservableObject {
     
     func runMigration() async {
         UserDefaults.currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
+    func forceUpgradeApp() {
+        shouldForceUpgrade = true
     }
     
 }

@@ -16,40 +16,20 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Group {
-                    HStack{
+                Section(header: Text("LINKS")
+                    .foregroundColor(Color.foregroundColorLight), content: {
+                    HStack {
+                        Text("App URL")
+                            .foregroundColor(Color.foregroundColor)
                         Spacer()
-                        VStack {
-                            Image(systemName: "person.circle")
-                                .resizable()
-                                .frame(width: 100, height: 100, alignment: .center)
-                            Text(viewModel.dummyUserName)
-                                .font(.title)
-                                .foregroundColor(Color.foregroundColor)
-                            Text(viewModel.dummyEmail)
-                                .font(.subheadline)
-                                .foregroundColor(Color.foregroundColorLight)
-                            Spacer()
-                            Button(action: {
-                                appCoordinator.changeAppViewState(path: .webView("https://dipeshdhakal.site/"))
-                            }) {
-                                Text("Edit Profile")
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                                    .font(.system(size: 18))
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 25)
-                                            .stroke(Color.white, lineWidth: 2)
-                                    )
-                            }
-                            .background(Color.blue)
-                            .cornerRadius(25)
-                        }
-                        .padding(.vertical, 20)
-                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color.foregroundColor)
                     }
-                }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        appCoordinator.changeAppViewState(path: .webView("https://dipeshdhakal.site/"))
+                    }
+                })
                 
                 Section(header: Text("PREFRENCES")
                     .foregroundColor(Color.foregroundColorLight), content: {
@@ -59,6 +39,24 @@ struct SettingsView: View {
                             Text("Biometric Lock")
                                 .foregroundColor(Color.foregroundColor)
                         }
+                    }
+                })
+                
+                Section(header: Text("SETTINGS")
+                    .foregroundColor(Color.foregroundColorLight), content: {
+                    HStack {
+                        Image(systemName: "person.fill.xmark")
+                            .foregroundColor(Color.foregroundColor)
+                        Text("Sign out")
+                            .foregroundColor(Color.foregroundColor)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color.foregroundColor)
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        UserDefaults.userLoggedIn = false
+                        appCoordinator.changeAppViewState(path: .login)
                     }
                 })
             }

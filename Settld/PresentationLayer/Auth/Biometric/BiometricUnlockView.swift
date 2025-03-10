@@ -11,6 +11,7 @@ struct BiometricUnlockView: View {
     
     @ObservedObject var viewModel = BiometricUnlockViewModel()
     @EnvironmentObject var appSettings: AppSettings
+    @EnvironmentObject var appCoordinator : AppCoordinator
     @State var firstLoad = true
     
     var body: some View {
@@ -31,6 +32,7 @@ struct BiometricUnlockView: View {
                 await MainActor.run {
                     if success {
                         appSettings.appUnlocked = true
+                        appCoordinator.removePath(path: .biometric)
                     }
                 }
             }

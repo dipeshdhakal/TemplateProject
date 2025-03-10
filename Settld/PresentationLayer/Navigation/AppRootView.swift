@@ -14,6 +14,7 @@ struct AppRootView: View {
     @EnvironmentObject var appSettings : AppSettings
     
     @StateObject var viewModel = AppRootViewModel()
+    @State var beenToBackground = false
     
     var body: some View {
         NavigationStack(path: $appCoordinator.appLaunchPath, root: {
@@ -41,36 +42,35 @@ struct AppRootView: View {
                         ProgressView()
                             .navigationBarBackButtonHidden(true)
                     case .webView(let urlString):
-                        WebView(url: URL(string: urlString)!)
-                            .navigationBarTitleDisplayMode(.inline)
+                        if let url = URL(string: urlString) {
+                            WebView(url: url)
+                        }
                     }
                 })
         })
         .transition(.identity)
         .onChange(of: viewModel.startupCompleted, { oldValue, newValue in
             if newValue {
-                appCoordinator.determineNextPath()
+                appCoordinator.determineNextPath(shouldAddBiometricOnTop: !appSettings.appUnlocked && UserDefaults.biometricEnabled)
             }
         })
+        .sheet(isPresented: $viewModel.shouldForceUpgrade) {
+            ForceUpgradeView()
+        }
         .onChange(of: scenePhase, { oldValue , newValue in
             guard oldValue != newValue else { return }
             switch newValue {
             case .background:
+                beenToBackground = true
                 appCoordinator.changeAppViewState(path: .privacyScreen)
                 appSettings.appUnlocked = false
-            default:
-                if !appSettings.appUnlocked && UserDefaults.biometricEnabled {
+            case .active:
+                appCoordinator.removePath(path: .privacyScreen)
+                if beenToBackground && oldValue == .inactive && !appSettings.appUnlocked && UserDefaults.biometricEnabled {
                     appCoordinator.changeAppViewState(path: .biometric)
-                } else {
-                    if oldValue == .inactive && !viewModel.startupCompleted {
-                        // First launch
-                        appCoordinator.changeAppViewState(path: .startup)
-                    } else {
-                        // From background
-                        appCoordinator.determineNextPath()
-                    }
                 }
-                
+            default:
+                break
             }
         })
     }

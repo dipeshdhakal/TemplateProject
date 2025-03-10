@@ -19,8 +19,8 @@ protocol EndpointProvider: Sendable {
     var scheme: String { get }
     var baseURL: String { get }
     var path: String { get }
+    var isAuthRequest: Bool { get }
     var method: RequestMethod { get }
-    var token: String { get }
     var queryItems: [URLQueryItem]? { get }
     var body: [String: Any]? { get }
     var mockFile: String? { get }
@@ -35,12 +35,12 @@ extension EndpointProvider {
     var baseURL: String {
         return ""
     }
-
-    var token: String {
-        return ""
+    
+    var isAuthRequest: Bool {
+        return false
     }
 
-    func asURLRequest() throws -> URLRequest {
+    func asURLRequest(token: String? = nil) throws -> URLRequest {
 
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
@@ -59,7 +59,7 @@ extension EndpointProvider {
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("true", forHTTPHeaderField: "X-Use-Cache")
 
-        if !token.isEmpty {
+        if let token {
             urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         if let body = body {

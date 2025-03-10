@@ -16,7 +16,6 @@ class AppCoordinator: ObservableObject {
     @Published var appLaunchPath : [AppLaunchNavigation] = []
 
     func checkDeepLink(url: URL) {
-        
         if url.pathComponents.count > 1 {
             if let currentDeeplink = Deeplink(rawValue: url.pathComponents[1]), let deepLinkTab = currentDeeplink.selectedTab {
                 currentTab = deepLinkTab
@@ -39,7 +38,7 @@ class AppCoordinator: ObservableObject {
         appLaunchPath.append(path)
     }
     
-    func determineNextPath() {
+    func determineNextPath(shouldAddBiometricOnTop: Bool) {
         if UserDefaults.userOnboarded {
             if UserDefaults.userLoggedIn {
                 appendOnTopOfRootView(path: .home)
@@ -49,23 +48,31 @@ class AppCoordinator: ObservableObject {
         } else {
             appendOnTopOfRootView(path: .onboarding)
         }
+        if shouldAddBiometricOnTop {
+            changeAppViewState(path: .biometric)
+        }
     }
     
     func changeAppViewState(path: AppLaunchNavigation) {
+        guard path != appLaunchPath.last else {
+            return
+        }
         switch path {
         case .home, .login, .onboarding:
             appendOnTopOfRootView(path: path)
         case .biometric:
-            // When faceID is shown, scenePhase goes to background triggering infinite loop. So, we need to check if biometric is already in the path
-            if appLaunchPath.last != .biometric {
-                appLaunchPath.append(path)
-            }
+            appLaunchPath.append(path)
         case .privacyScreen, .webView:
             appLaunchPath.append(path)
         case .startup:
             appLaunchPath = [path]
         }
     }
+    
+    func removePath(path: AppLaunchNavigation) {
+        appLaunchPath.removeAll(where: { $0 == path})
+    }
+    
 }
 
 enum Tab: String {

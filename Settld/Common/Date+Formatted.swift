@@ -19,4 +19,19 @@ extension DateFormatter {
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter
     }
+    
+    static var serverFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return formatter
+    }
+}
+
+extension String {
+    var date: Date? {
+        return DateFormatter.customFormatter.date(from: self)
+    }
+    var serverDate: Date? {
+        return DateFormatter.serverFormatter.date(from: self)
+    }
 }

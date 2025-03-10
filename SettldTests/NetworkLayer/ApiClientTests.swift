@@ -29,12 +29,9 @@ final class ApiClientTests: XCTestCase {
     
     func testAsyncRequest() async throws {
 
-        let sessionConfiguration = URLSessionConfiguration.ephemeral
-        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
-        let session = URLSession(configuration: sessionConfiguration)
         setMockProtocol()
         
-        let apiClient = ApiClient(session: session)
+        let apiClient = ApiClient(urlSessionProvider: MockURLSessionProvider(), authManager: MockAuthManager())
         let endpoint = MockEndpoint()
 
         do {
@@ -46,5 +43,25 @@ final class ApiClientTests: XCTestCase {
             throw error
         }
 
+    }
+}
+
+final class MockURLSessionProvider: URLSessionProvider {
+    
+    var urlSession: URLSession {
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
+        return URLSession(configuration: sessionConfiguration)
+    }
+}
+
+final class MockAuthManager: AuthManagable {
+    
+    func getToken() async throws -> Token {
+        return Token(accessToken: "tesAcessToken", refreshToken: nil, expiryDate: "2025-11-02T02:50:12.208Z")
+    }
+    
+    func fetchValidAuthToken() async throws -> Token {
+        return Token(accessToken: "tesAcessToken", refreshToken: nil, expiryDate: "2025-11-02T02:50:12.208Z")
     }
 }
