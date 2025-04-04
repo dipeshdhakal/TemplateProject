@@ -1,0 +1,72 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Alert.Button.Cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Alert.Button.Ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Alert.Message.TryAgain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please try again."
+          }
+        }
+      }
+    },
+    "Biometric.Auth.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authenticate using Face ID or Touch ID"
+          }
+        }
+      }
+    },
+    "Biometric.Failed.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biometric Authentication Failed"
+          }
+        }
+      }
+    },
+    "Biometric.Unlock.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock using biometric"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

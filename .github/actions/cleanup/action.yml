@@ -1,0 +1,12 @@
+name: "Clean resources"
+description: "Clean"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Clean build folders
+      shell: bash
+      run: |
+        rm -rf ~/Library/Caches/org.swift.swiftpm
+        rm -rf ~/Library/org.swift.swiftpm
+        rm -rf ~/Library/Developer/Xcode/DerivedData/GithubActions*
