@@ -15,8 +15,11 @@ I have decided to go with Clean code architecture. You can see distinct layers p
 3. SwiftData
 4. Biometric integration
 5. Dark / light mode support
-6. Appclip
-7. Bonus - Passkey
+6. Certificate pinning
+7. OAuth token handling with URLSession
+8. Swift6 concurrency
+9. Appclip
+10. Bonus - Passkey
 
 ## Deeplinks:
 https://dipeshd.azurewebsites/net
